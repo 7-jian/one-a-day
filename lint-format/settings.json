@@ -1,0 +1,8 @@
+// Editor: Code Actions On Save / setting.json
+// auto-fix-on-save
+{
+  "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
