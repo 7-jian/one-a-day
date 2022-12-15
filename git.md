@@ -33,11 +33,14 @@ git statue // 查看当前状态
 git add -u // 更新所有已经被跟踪的文件, 避免把工作区没准备好的新文件直接加到暂存区
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // fix: Failed to connect to github.com port 443 after 21048 ms: Timed out
 git config --global http.sslVerify 'false'
 git push
 
 =======
 >>>>>>> 657fc35 (add git.md)
+=======
+>>>>>>> 2c9332b (add git.md)
 
 ```
