@@ -1,0 +1,9 @@
+to_do_list_vue
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
