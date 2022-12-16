@@ -34,13 +34,19 @@ git add -u // 更新所有已经被跟踪的文件, 避免把工作区没准备�
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0238b1b (update(git.md):  Failed to connect to github)
 // fix: Failed to connect to github.com port 443 after 21048 ms: Timed out
 git config --global http.sslVerify 'false'
 git push
 
+<<<<<<< HEAD
 =======
 >>>>>>> 657fc35 (add git.md)
 =======
 >>>>>>> 2c9332b (add git.md)
+=======
+>>>>>>> 0238b1b (update(git.md):  Failed to connect to github)
 
 ```
