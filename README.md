@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # one-a-day 4
+=======
+# one-a-day
+>>>>>>> 612c607 (update readme.md)
 learn a little every day.  
 <<<<<<< HEAD
 <<<<<<< HEAD
