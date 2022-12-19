@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # to_do_list_vue2.html
 # accumulator_vue2.html
 # accumulator_vue3.html
@@ -10,6 +11,9 @@ to_do_list_vue
 =======
 to_do_list.html
 >>>>>>> 4956898 (update .gitignore)
+=======
+# to_do_list.html
+>>>>>>> d11c0ea (update .gitignore)
 
 # Editor directories and files
 .idea
