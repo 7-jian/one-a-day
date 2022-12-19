@@ -59,3 +59,31 @@
 #### [vue and react](https://static001.geekbang.org/resource/image/66/0f/669188c294d8e306072ef4273ec2630f.png?wh=1920x635)
 ##### React 的世界里只有 JSX，最终 JSX 都会在 Compiler 那一层，也就是工程化那里编译成 JS 来执行，所以 React 最终拥有了全部 JS 的动态性，这也导致了 React 的 API 一直很少，只有 state、hooks、Component 几个概念，主要都是 JavaScript 本身的语法和特性。
 ##### 而 Vue 的世界默认是 template，也就是语法是限定死的，比如 v-if 和 v-for 等语法。有了这些写法的规矩后，我们可以在上线前做很多优化。Vue 3 很优秀的一个点，就是在虚拟 DOM 的静态标记上做到了极致，让静态的部分越过虚拟 DOM 的计算，真正做到了按需更新，很好的提高了性能。
+##### 开发维护的角度：Vue 2 是使用 Flow.js 来做类型校验。但现在 Flow.js 已经停止维护了，整个社区都在全面使用 TypeScript 来构建基础库
+##### 二次开发难度：Vue 2 内部运行时，是直接执行浏览器 API 的。但这样就会在 Vue 2 的跨端方案中带来问题，要么直接进入 Vue 源码中，和 Vue 一起维护，比如 Vue 2 中你就能见到 Weex 的文件夹。要么是要直接改为复制一份全部 Vue 的代码，把浏览器 API 换成客户端或者小程序的。比如 mpvue 就是这么做的，但是 Vue 后续的更新就很难享受到。
+##### 普通开发者的角度：Vue 2 响应式并不是真正意义上的代理，而是基于 Object.defineProperty() 实现的。这个 API 并不是代理，而是对某个属性进行拦截，所以有很多缺陷，比如：删除数据就无法监听，需要 $delete 等 API 辅助才能监听到。并且，Option API 在组织代码较多组件的时候不易维护。对于 Option API 来说，所有的 methods、computed 都在一个对象里配置，这对小应用来说还好。但代码超过 300 行的时候，新增或者修改一个功能，就需要不停地在 data，methods 里跳转写代码，上下反复横跳。
+##### Vue 3 就是继承了 Vue 2 具有的响应式、虚拟 DOM，组件化等所有优秀的特点，并且全部重新设计，解决了这些历史包袱的新框架，是一个拥抱未来的前端框架。
+##### Vue 3 新特性：响应式系统、Composition API 组合语法、新的组件和 Vite 是你需要重视的；自定义渲染器这方面的知识，你想用 Vue 开发跨端应用时会用到；如果你想对 Vue 源码作出贡献，[RFC](https://github.com/vuejs/rfcs) 机制你也需要好好研究，并且得对 TypeScript 重构有很好的经验。
+##### Vue 2 的响应式机制是基于 Object.defineProperty() 这个 API 实现的，Vue 还使用了 Proxy，这两者看起来都像是对数据的读写进行拦截，但是 defineProperty 是拦截具体某个属性，Proxy 才是真正的“代理”。
+```js
+Object.defineProperty(obj, 'title', {
+  get() {},
+  set() {},
+})
+```
+##### 当项目里“读取 obj.title”和“修改 obj.title”的时候被 defineProperty 拦截，但 defineProperty 对不存在的属性无法拦截，所以 Vue 2 中所有数据必须要在 data 里声明。而且，如果 title 是一个数组的时候，对数组的操作，并不会改变 obj.title 的指向，虽然我们可以通过拦截.push 等操作实现部分功能，但是对数组的长度的修改等操作还是无法实现拦截，所以还需要额外的 $set 等 API。
+```js
+new Proxy(obj, {
+  get() { },
+  set() { },
+})
+```
+##### 虽然 Proxy 拦截 obj 这个数据，但 obj 具体是什么属性，Proxy 则不关心，统一都拦截了。而且 Proxy 还可以监听更多的数据格式，比如 Set、Map，这是 Vue 2 做不到的。
+##### Proxy 代表一种方向，就是框架会越来越多的拥抱浏览器的新特性。在 Proxy 普及之前，我们是没有办法完整的监听一个 JavaScript 对象的变化，只能使用 Object.defineProperty() 去实现一部分功能。
+##### 前端框架利用浏览器的新特性来完善自己，才会让前端这个生态更繁荣，抛弃旧的浏览器是早晚的事。
+##### [自定义渲染器](https://static001.geekbang.org/resource/image/95/0c/9573fb8b18cb694fe9959b82742ecb0c.jpg?wh=1444x824)，Vue 2 内部所有的模块都是揉在一起的，这样做会导致不好扩展的问题，Vue 3拆包，使用最近流行的 monorepo 管理方式（Monorepo的意思是在版本控制系统的单个代码库里包含了许多项目的代码。这些项目虽然有可能是相关的，但通常在逻辑上是独立的，并由不同的团队维护。），响应式、编译和运行时全部独立了，在 Vue 3 的组织架构中，响应式独立了出来。而 Vue 2 的响应式只服务于 Vue，Vue 3 的响应式就和 Vue 解耦了，你甚至可以在 Node.js 和 React 中使用响应式。
+##### 渲染的逻辑也拆成了平台无关渲染逻辑和浏览器渲染 API 两部分
+##### 使用 Vue 3 开发小程序、开发 canvas 小游戏以及开发客户端的时候，就不用全部 fork Vue 的代码，只需要实现[平台的渲染逻辑](https://static001.geekbang.org/resource/image/27/f6/2742614d6d43134084835a44079313f6.jpg?wh=1920x939)就可以。
+##### 响应式、编译和运行时几部分组合在一起就是运行在浏览器端的 Vue 3，每个模块又都可以独立扩展出新的功能
+##### 全部模块使用 TypeScript 重构，类型系统带来了更方便的提示，并且让我们的代码能够更健壮。
+##### 第一点是，类型系统带来了更方便的提示；第二点是，类型系统让代码更健壮。
