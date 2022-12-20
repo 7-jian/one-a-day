@@ -87,3 +87,60 @@ new Proxy(obj, {
 ##### 响应式、编译和运行时几部分组合在一起就是运行在浏览器端的 Vue 3，每个模块又都可以独立扩展出新的功能
 ##### 全部模块使用 TypeScript 重构，类型系统带来了更方便的提示，并且让我们的代码能够更健壮。
 ##### 第一点是，类型系统带来了更方便的提示；第二点是，类型系统让代码更健壮。
+##### 由于所有数据都挂载在 this 之上，因而 Options API 的写法对 TypeScript 的类型推导很不友好，并且这样也不好做 Tree-shaking(Tree-shaking删除无用的导入/出模块; 将有用的代码进行打包) 清理代码。
+##### 新增功能基本都得修改 data、method 等配置，并且代码上 300 行之后，会经常上下反复横跳，开发很痛苦。
+##### 代码不好复用，Vue 2 的组件很难抽离通用逻辑，只能使用 mixin，还会带来命名冲突的问题。
+##### 使用 Composition API 后
+##### 所有 API 都是 import 引入的。用到的功能都 import 进来，对 Tree-shaking 很友好，打包的时候会被清理掉 ，减小包的大小。
+##### 不再上下反复横跳，我们可以把一个功能模块的 methods、data 都放在一起书写，维护更轻松。
+##### 代码方便复用，可以把一个功能所有的 methods、data 封装在一个独立的函数里，复用代码非常容易。
+##### Composotion API 新增的 return 等语句，在实际项目中使用。
+##### [Composition API 对我们开发 Vue 项目起到了巨大的帮助](https://static001.geekbang.org/resource/image/a0/5f/a0010538b40e48fc5fc68b0eed2b025f.jpg?wh=3220x2046)
+##### Vue 3 还内置了 Fragment、Teleport 和 Suspense 三个新组件
+##### Fragment: Vue 3 组件不再要求有一个唯一的根节点，清除了很多无用的占位 div
+##### Teleport: 允许组件渲染在别的元素内，主要开发弹窗组件的时候特别有用。
+##### Suspense: 异步组件，更方便开发有异步请求的组件。
+##### [Webpack 的工作原理](https://static001.geekbang.org/resource/image/d4/ba/d471d1f14abeaf4b091ddf5fb83e3eba.jpg?wh=1920x913)，Webpack 要把所有路由的依赖打包后，才能开始调试。
+##### [Vite 的工作原理](https://static001.geekbang.org/resource/image/8b/4c/8b726d2b8a09b045874340504a04414c.jpg?wh=1920x960)，一开始就可以准备联调，然后根据首页的依赖模块，再去按需加载，这样启动调试所需要的资源会大大减少。
+##### [vue3新特性](https://static001.geekbang.org/resource/image/cc/d0/cc47460b1f9441d843bff6d37777a8d0.jpg?wh=3059x1664)
+##### Vue 3 也不是没有问题，由于新的响应式系统用了 Proxy，会存在兼容性问题。也就是说，如果你的应用被要求兼容 IE11，就应该选择 Vue 2。而且，Vue 团队也已经放弃 Vue 3 对 IE11 浏览器的支持。
+##### [是否使用vue3](https://static001.geekbang.org/resource/image/2d/1a/2d26cea2a48d9caec0yybe6862643e1a.jpg?wh=1921x1270)
+##### [迁移指南](https://cn.vuejs.org/)
+##### 升级 Vue 3 的过程中，除了 Vue 3 本身的语法变化，生态也要注意选择。。有一些周边的生态库可能还存在不稳定的情况，开发项目的时候我们时刻关注项目的 GitHub 即可。
+##### Vue-cli4 已经提供内置选项，你当然可以选择它支持的 Vue 2。如果你对 Vite 不放心的话，Vue-cli4 也全面支持 Vue 3
+##### vue-router 是复杂项目必不可少的路由库，它也包含一些写法上的变化，比如从 new Router 变成 createRouter；使用方式上，也全面拥抱 Composition API 风格，提供了 useRouter 和 useRoute 等方法。
+##### Vuex 4.0 也支持 Vue 3，不过变化不大。有趣的是 Vue 官方成员还发布了一个 Pinia，Pinia 的 API 非常接近 Vuex5 的设计，并且对 Composition API 特别友好，更优雅一些。
+##### 其他生态诸如 Nuxt、组件库 Ant-design-vue、Element 等等，都有 Vue 3 的版本发布。
+##### 使用自动化升级工具进行 Vue 的升级
+##### 在 Vue 3 的项目里，有一个 @vue/compat 的库，这是一个 Vue 3 的构建版本，提供了兼容 Vue 2 的行为。这个版本默认运行在 Vue 2 下，它的大部分 API 和 Vue 2 保持了一致。当使用那些在 Vue 3 中发生变化或者废弃的特性时，这个版本会提出警告，从而避免兼容性问题的发生，帮助你很好地迁移项目。并且通过升级的提示信息，@vue/compat 还可以很好地帮助你学习版本之间的差异。
+
+```json
+// 首先我们把项目依赖的 Vue 版本换成 Vue 3，并且引入了 @vue/compat 。
+"dependencies": {
+-  "vue": "^2.6.12",
++  "vue": "^3.2.19",
++  "@vue/compat": "^3.2.19"
+   ...
+},
+"devDependencies": {
+-  "vue-template-compiler": "^2.6.12"
++  "@vue/compiler-sfc": "^3.2.19"
+}
+```
+```js
+// 然后给 vue 设置别名 @vue/compat，也就是以 compat 作为入口
+// vue.config.js
+module.exports = {
+  chainWebpack: config => {
+    config.resolve.alias.set('vue', '@vue/compat')
+    ......
+  }
+}
+```
+##### 这时你就会在控制台看到很多警告，以及很多优化的建议。我们参照建议，挨个去做优化就可以了。
+##### 自动化替换的工具,“阿里妈妈”出品的 [gogocode](https://gogocode.io/zh/docs/vue/vue2-to-vue3)
+##### 自动化替换工具的原理很简单，和 Vue 的 Compiler 优化的原理是一样的，也就是利用编译原理做代码替换。我们利用 babel 分析左边 Vue 2 的源码，解析成 AST，然后根据 Vue 3 的写法对 AST 进行转换，最后生成新的 Vue 3 代码。
+<img src="https://static001.geekbang.org/resource/image/e3/e0/e371fee0a7e75942151724yy58fbfee0.jpg?wh=1920x1040" />
+
+##### 对于替换过程的中间编译成的 AST，你可以理解为用 JavaScript 的对象去描述这段代码，这和虚拟 DOM 的理念有一些相似，我们基于这个对象去做优化，最终映射生成新的 Vue 3 代码。
+##### Vue 3 的核心功能，包括项目搭建、Composition API、响应式、组件化和动画。
