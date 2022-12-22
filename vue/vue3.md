@@ -153,6 +153,9 @@ module.exports = {
 ##### 对于替换过程的中间编译成的 AST，你可以理解为用 JavaScript 的对象去描述这段代码，这和虚拟 DOM 的理念有一些相似，我们基于这个对象去做优化，最终映射生成新的 Vue 3 代码。
 ##### Vue 3 的核心功能，包括项目搭建、Composition API、响应式、组件化和动画。
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e5423e6 (study: script setup)
 ##### 如果没有`<script setup>`，需要在`<script>`中导出一个对象
 ##### `<script setup>`还有其它一些很好用的功能，比如能够使用顶层的 await 去请求后端的数据等等
 ##### 在 style 标签上加上 scoped 这个属性，定义的 CSS 就只会应用到当前组件的元素上，避免了一些样式冲突的问题。标签和样式的属性上，新增了 data- 的前缀，确保只在当前组件生效。
@@ -180,6 +183,8 @@ h1 {
   color:v-bind(color);
 }
 </style>>
+<<<<<<< HEAD
+<<<<<<< HEAD
 ```
 ##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
 =======
@@ -190,3 +195,10 @@ h1 {
 >>>>>>> a8d1c36 (update vue3.md)
 =======
 >>>>>>> 56e1491 (update vue3.md)
+=======
+```
+>>>>>>> e5423e6 (study: script setup)
+=======
+```
+##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
+>>>>>>> f60160e (add responsive)
