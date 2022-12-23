@@ -185,6 +185,7 @@ h1 {
 </style>>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```
 ##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
 =======
@@ -202,3 +203,7 @@ h1 {
 ```
 ##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
 >>>>>>> f60160e (add responsive)
+=======
+```
+##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
+>>>>>>> fa2b9bc (add responsive)
