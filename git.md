@@ -32,21 +32,31 @@ dir // Windows 查看文件夹下的文件
 git statue // 查看当前状态
 git add -u // 更新所有已经被跟踪的文件, 避免把工作区没准备好的新文件直接加到暂存区
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0238b1b (update(git.md):  Failed to connect to github)
 // fix: Failed to connect to github.com port 443 after 21048 ms: Timed out
 git config --global http.sslVerify 'false'
 git push
 
-<<<<<<< HEAD
-=======
->>>>>>> 657fc35 (add git.md)
-=======
->>>>>>> 2c9332b (add git.md)
-=======
->>>>>>> 0238b1b (update(git.md):  Failed to connect to github)
+// 文件重命名 readme -> readme.md
+mv readme readme.md
+git add readme.md
+git rm readme
 
+git mv readme readme.md
+git config core.ignorecase true // 忽略大小写
+
+// 清除暂存区
+git reset --hard
+
+// git log
+git log --all // 查看所有分支的历史
+git log --oneline -n4 // 查看最近的四条简洁历史
+git log --all --graph // 查看图形化的 log 地址
+git help --web log // 跳转到git log 的帮助文档网页
+
+// branch
+git branch -v // 查看分支
+git checkout -b dev // 创建并切换到dev分支
+
+// mac
+sudo apt-get install gitk // 安装gitk
 ```
