@@ -59,4 +59,14 @@ git checkout -b dev // 创建并切换到dev分支
 
 // mac
 sudo apt-get install gitk // 安装gitk
+
+// 删除不必要的分支
+gitk --all // 查看所有分支
+git branch -d dev // 删除dev分支
+
+// 对最新一次提交做 commit 修改
+git commit --amend
+
+// rebase通常用在还没有提交到集成分支之前
+git rebase -i HEAD~3(父节点commitId) // 修改最近三次提交
 ```
