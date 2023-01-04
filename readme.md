@@ -2,6 +2,7 @@
 
 learn a little every day.  🐝
 
+2023-1-4 [git.md](https://github.com/sevenjian/one-a-day/tree/main/git.md)   
 2023-1-3 [git.md](https://github.com/sevenjian/one-a-day/tree/main/git.md)   
 
 2022-12-30 vue componentization mechanism    
