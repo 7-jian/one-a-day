@@ -1,35 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b39828b (add all exercises)
 # to_do_list_vue2.html
 # accumulator_vue2.html
 # accumulator_vue3.html
 # vue/vue3-mini-project
-<<<<<<< HEAD
-=======
-to_do_list_vue
->>>>>>> 9f79ed6 (add .gitignore)
-=======
-to_do_list.html
->>>>>>> 4956898 (update .gitignore)
-=======
 # to_do_list.html
->>>>>>> d11c0ea (update .gitignore)
-=======
-to_do_list_vue2.html
-accumulator_vue2.html
-accumulator_vue3.html
-<<<<<<< HEAD
->>>>>>> e7a357f (update .gitignore)
-=======
-vue/vue3-mini-project
->>>>>>> 4557477 (update .gitignore)
-=======
->>>>>>> b39828b (add all exercises)
+# vue/vue3-mini-project
 
 # Editor directories and files
 .idea

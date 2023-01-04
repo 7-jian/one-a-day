@@ -58,10 +58,6 @@
 ##### 除了响应式和虚拟 DOM 这个维度，Vue 和 React 还有一些理念和路线的不同，在模板的书写上，也走出了 template 和 JSX 两个路线。
 #### [vue and react](https://static001.geekbang.org/resource/image/66/0f/669188c294d8e306072ef4273ec2630f.png?wh=1920x635)
 ##### React 的世界里只有 JSX，最终 JSX 都会在 Compiler 那一层，也就是工程化那里编译成 JS 来执行，所以 React 最终拥有了全部 JS 的动态性，这也导致了 React 的 API 一直很少，只有 state、hooks、Component 几个概念，主要都是 JavaScript 本身的语法和特性。
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a8d1c36 (update vue3.md)
 ##### 而 Vue 的世界默认是 template，也就是语法是限定死的，比如 v-if 和 v-for 等语法。有了这些写法的规矩后，我们可以在上线前做很多优化。Vue 3 很优秀的一个点，就是在虚拟 DOM 的静态标记上做到了极致，让静态的部分越过虚拟 DOM 的计算，真正做到了按需更新，很好的提高了性能。
 ##### 开发维护的角度：Vue 2 是使用 Flow.js 来做类型校验。但现在 Flow.js 已经停止维护了，整个社区都在全面使用 TypeScript 来构建基础库
 ##### 二次开发难度：Vue 2 内部运行时，是直接执行浏览器 API 的。但这样就会在 Vue 2 的跨端方案中带来问题，要么直接进入 Vue 源码中，和 Vue 一起维护，比如 Vue 2 中你就能见到 Weex 的文件夹。要么是要直接改为复制一份全部 Vue 的代码，把浏览器 API 换成客户端或者小程序的。比如 mpvue 就是这么做的，但是 Vue 后续的更新就很难享受到。
@@ -90,10 +86,6 @@ new Proxy(obj, {
 ##### 使用 Vue 3 开发小程序、开发 canvas 小游戏以及开发客户端的时候，就不用全部 fork Vue 的代码，只需要实现[平台的渲染逻辑](https://static001.geekbang.org/resource/image/27/f6/2742614d6d43134084835a44079313f6.jpg?wh=1920x939)就可以。
 ##### 响应式、编译和运行时几部分组合在一起就是运行在浏览器端的 Vue 3，每个模块又都可以独立扩展出新的功能
 ##### 全部模块使用 TypeScript 重构，类型系统带来了更方便的提示，并且让我们的代码能够更健壮。
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 56e1491 (update vue3.md)
 ##### 第一点是，类型系统带来了更方便的提示；第二点是，类型系统让代码更健壮。
 ##### 由于所有数据都挂载在 this 之上，因而 Options API 的写法对 TypeScript 的类型推导很不友好，并且这样也不好做 Tree-shaking(Tree-shaking删除无用的导入/出模块; 将有用的代码进行打包) 清理代码。
 ##### 新增功能基本都得修改 data、method 等配置，并且代码上 300 行之后，会经常上下反复横跳，开发很痛苦。
@@ -152,10 +144,6 @@ module.exports = {
 
 ##### 对于替换过程的中间编译成的 AST，你可以理解为用 JavaScript 的对象去描述这段代码，这和虚拟 DOM 的理念有一些相似，我们基于这个对象去做优化，最终映射生成新的 Vue 3 代码。
 ##### Vue 3 的核心功能，包括项目搭建、Composition API、响应式、组件化和动画。
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e5423e6 (study: script setup)
 ##### 如果没有`<script setup>`，需要在`<script>`中导出一个对象
 ##### `<script setup>`还有其它一些很好用的功能，比如能够使用顶层的 await 去请求后端的数据等等
 ##### 在 style 标签上加上 scoped 这个属性，定义的 CSS 就只会应用到当前组件的元素上，避免了一些样式冲突的问题。标签和样式的属性上，新增了 data- 的前缀，确保只在当前组件生效。
@@ -182,28 +170,17 @@ function add() {
 h1 {
   color:v-bind(color);
 }
-</style>>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+</style>
 ```
 ##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
-=======
-##### 而 Vue 的世界默认是 template，也就是语法是限定死的，比如 v-if 和 v-for 等语法。有了这些写法的规矩后，我们可以在上线前做很多优化。Vue 3 很优秀的一个点，就是在虚拟 DOM 的静态标记上做到了极致，让静态的部分越过虚拟 DOM 的计算，真正做到了按需更新，很好的提高了性能。
->>>>>>> a14b20f (add vue3.md)
-=======
-##### 第一点是，类型系统带来了更方便的提示；第二点是，类型系统让代码更健壮。
->>>>>>> a8d1c36 (update vue3.md)
-=======
->>>>>>> 56e1491 (update vue3.md)
-=======
-```
->>>>>>> e5423e6 (study: script setup)
-=======
-```
-##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
->>>>>>> f60160e (add responsive)
-=======
-```
-##### [三种响应式的区别](https://static001.geekbang.org/resource/image/b5/11/b5344de85923a2ba8bea60283b491711.png?wh=1336x650)
->>>>>>> fa2b9bc (add responsive)
+##### watchEffect 这个函数让我们在数据变化之后可以执行指定的函数
+##### Composition API 最大的优点，也就是可以任意拆分出独立的功能。
+##### Vueuse 工具库，包含了大量类似 useStorage 的工具函数库
+##### 可以把日常开发中用到的数据，无论是浏览器的本地存储，还是网络数据，都封装成[响应式数据](https://static001.geekbang.org/resource/image/5a/0e/5a5yy5dc6f6b25f1c1ff8f3a434cd10e.jpg?wh=2316x1829)，统一使用响应式数据开发的模式。这样，我们开发项目的时候，只需要修改对应的数据就可以了。
+##### VueUse 的官方的介绍说这是一个 Composition API  的工具集合，适用于 Vue 2.x 或者 Vue 3.x。
+##### VueUse 提供了一大批工具函数，包括全屏、网络请求、动画等，都可以使用响应式风格的接口去使用，并且同时兼容 Vue 2 和 Vue 3，开箱即用。
+##### Vue 的组件化机制
+<img src="https://static001.geekbang.org/resource/image/0e/39/0e922d413eeeac4378233baa254dd039.png?wh=1406x544" />
+
+##### 组件分成两个类型，一个是通用型组件，一个是业务型组件。通用型组件就是各大组件库的组件风格，包括按钮、表单、弹窗等通用功能。业务型组件包含业务的交互逻辑，包括购物车、登录注册等，会和我们不同的业务强绑定。
+##### 组件的开发由于要考虑代码的复用性，会比通常的业务开发要求更高，需要有更好的可维护性和稳定性的要求。
