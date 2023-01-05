@@ -12,3 +12,7 @@ vue/vue3-mini-project/node_modules
 *.ntvs*
 *.njsproj
 *.sln
+
+# 文件已经纳入版本管理，修改.gitignore是不能失效的
+# 解决方案: 将git的本地缓存删除
+# git rm -r --cached .
