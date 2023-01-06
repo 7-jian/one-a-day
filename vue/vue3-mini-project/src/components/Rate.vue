@@ -1,32 +1,35 @@
 <template>
   <div :style="fontStyle">
     <!-- {{ rate }} -->
-    <div class='rate' @mouseout="mouseOut">
+    <!-- 插槽 -->
+    <slot></slot>
+    <div class="rate" @mouseout="mouseOut">
       <span
-        v-for='num in 5'
+        v-for="num in 5"
         :key="num"
         @mouseover="mouseOver(num)"
-      >
-        ☆
-      </span>
-      <span class='hollow' :style="fontwidth">
+      >☆</span>
+      <span class="hollow" :style="fontwidth">
       <span
-        v-for='num in 5'
+        v-for="num in 5"
         :key="num"
+        @click="onRate(num)"
         @mouseover="mouseOver(num)"
-      >
-          ★
-        </span>
+      >★</span>
       </span> 
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref, defineProps, computed } from 'vue'
+  import { ref, defineProps, defineEmits, computed } from 'vue'
   // defineProps 规范传递数据的格式
   let props = defineProps({
     value: {
+      type: Number,
+      default: 0
+    },
+    modelValue: {
       type: Number,
       default: 0
     },
@@ -37,6 +40,9 @@
   })
   // let rate = computed(() => 
   //   "★★★★★☆☆☆☆☆".slice(5 - props.value, 10 - props.value)
+  // )
+  // let rate = computed(() => 
+  //   "★★★★★☆☆☆☆☆".slice(5 - props.modelValue, 10 - props.modelValue)
   // )
   const themeObj = { 
     'black': '#000',
@@ -54,17 +60,31 @@
   })
 
   // 评分宽度
-  let width = ref(props.value)
+  // let width = ref(props.value)
+  let width = ref(props.modelValue)
   function mouseOver(i:number){
     width.value = i
   }
   function mouseOut(){
-    console.log('[ props.value ] >', props.value)
-    width.value = props.value
+    // width.value = props.value
+    width.value = props.modelValue
   }
+  function isDecimal(num:number){
+    return num % 1 !== 0
+  }
+  console.log('[ width.value ] >', width.value)
   const fontwidth = computed(() =>
-    `width: ${width.value + 1}em;`
+    // ★: 0.81em 半个：0.827em
+    `width: ${ isDecimal(width.value) ? width.value * 0.827 : width.value * 0.81 }em;`
   )
+  // let emits = defineEmits<{
+  //   (e: 'update-rate', id: number): void
+  // }>()
+  let emits = defineEmits(['update:modelValue'])
+  function onRate(num:number){ 
+    // emits('update-rate', num)
+    emits('update:modelValue', num)
+  }
 </script>
 
 <style scoped>
@@ -76,9 +96,8 @@
   display: inline-block;
   position: absolute;
   top: 0;
-  left: -6px;
+  left: 0;
   width: 0;
   overflow: hidden;
-  height: 26px;
 }
 </style>
