@@ -2,6 +2,7 @@
 
 learn a little every day.  🐝
 
+2023-1-6 [vue3-mini-project](https://github.com/sevenjian/one-a-day/tree/main/vue/vue3-mini-project)   
 2023-1-5 [vue3-mini-project](https://github.com/sevenjian/one-a-day/tree/main/vue/vue3-mini-project)   
 2023-1-4 [git.md](https://github.com/sevenjian/one-a-day/tree/main/git.md)   
 2023-1-3 [git.md](https://github.com/sevenjian/one-a-day/tree/main/git.md)   
