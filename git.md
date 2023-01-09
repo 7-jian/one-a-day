@@ -68,5 +68,8 @@ git branch -d dev // 删除dev分支
 git commit --amend
 
 // rebase通常用在还没有提交到集成分支之前
+// http://jartto.wang/2018/12/11/git-rebase/
 git rebase -i HEAD~3(父节点commitId) // 修改最近三次提交
+git rebase --continue
+git rebase --abort
 ```
