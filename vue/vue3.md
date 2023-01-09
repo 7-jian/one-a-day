@@ -148,7 +148,7 @@ module.exports = {
 ##### `<script setup>`还有其它一些很好用的功能，比如能够使用顶层的 await 去请求后端的数据等等
 ##### 在 style 标签上加上 scoped 这个属性，定义的 CSS 就只会应用到当前组件的元素上，避免了一些样式冲突的问题。标签和样式的属性上，新增了 data- 的前缀，确保只在当前组件生效。
 ##### 在 scoped 内部写全局的样式，可以用:global 来标记
-```vue
+```js
 <!-- 通过 v-bind 函数，直接在 CSS 中使用 JavaScript 中的变量 -->
 <template>
   <div>
@@ -186,3 +186,6 @@ h1 {
 ##### 组件的开发由于要考虑代码的复用性，会比通常的业务开发要求更高，需要有更好的可维护性和稳定性的要求。
 ##### 通过 defineProps 定义了传递数据的格式，通过 defineEmits 定义了监听的函数，最终实现了组件和外部数据之间的同步。
 <img src="https://static001.geekbang.org/resource/image/43/1b/43767ceb3324b4887271d0d20909a31b.jpg?wh=1904x1279" />
+
+##### transition 图里的 v-enter-from 中的 v，就是我们设置的 name 属性。所以在标签在进入和离开的时候，会有 fade-enter-active 和 fade-leave-active 的 class，进入的开始和结束会有 fade-enter-from 和 face-enter-to 两个 class
+<img src="https://static001.geekbang.org/resource/image/71/92/718a6019316ed75f6d040e4983957692.png?wh=1920x866" />
