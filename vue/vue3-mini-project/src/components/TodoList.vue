@@ -2,10 +2,23 @@
   <div>
     <span class="dustbin">🗑</span>
     <h1>{{x}},{{y}}</h1>
-    <input type="text" v-model="title" @keydown.enter="addTodo" />
-    <button v-if="active < all" @click="clear" style="margin-left:10px;">清理</button>
+    <input 
+      v-model="title"
+      type="text"
+      @keydown.enter="addTodo"
+    />
+    <button
+      v-if="active < all"
+      @click="clear"
+      style="margin-left:10px;">
+      清理
+    </button>
     <div v-if="todos.length">
-      <transition-group name="flip-list" tag="ul" style="text-align: left;">
+      <transition-group
+        name="flip-list"
+        tag="ul"
+        style="text-align: left;"
+      >
         <li v-for="(todo,i) in todos" :key="todo.title">
           <input type="checkbox" v-model="todo.done" />
           <span :class="{ done: todo.done }">{{ todo.title }}</span>
@@ -22,19 +35,23 @@
   </div>
   <transition name="modal">
     <div class="info-wrapper" v-if="showModal">
-      <div class="info">哥，你啥也没输入！</div>
+      <div class="info">请输入内容！</div>
     </div>
   </transition>
 
   <div class="animate-wrap">
-    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+    >
       <div class="animate" v-show="animate.show">📋</div>
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive } from "vue"
 import { useMouse } from '../utils/mouse'
 
 let animate = reactive({
@@ -65,7 +82,11 @@ function add() {
 
 
 let title = ref("");
-let todos = ref([{ title: '学习 Vue 3', done: true }, { title: '睡觉', done: false }, { title: '玩游戏', done: false }]);
+let todos = ref([
+  { title: '学习 Vue 3', done: true },
+  { title: '睡觉', done: false },
+  { title: '玩游戏', done: false }
+])
 
 let showModal = ref(false)
 
@@ -80,23 +101,23 @@ function addTodo() {
   todos.value.push({
     title: title.value,
     done: false,
-  });
-  title.value = "";
+  })
+  title.value = ""
 }
 function clear() {
-  todos.value = todos.value.filter((v) => !v.done);
+  todos.value = todos.value.filter((v) => !v.done)
 }
 let active = computed(() => {
-  return todos.value.filter((v) => !v.done).length;
-});
-let all = computed(() => todos.value.length);
+  return todos.value.filter((v) => !v.done).length
+})
+let all = computed(() => todos.value.length)
 let allDone = computed({
   get: function () {
-    return active.value === 0;
+    return active.value === 0
   },
   set: function (value) {
     todos.value.forEach((todo) => {
-      todo.done = value;
+      todo.done = value
     });
   },
 });
