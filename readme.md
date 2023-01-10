@@ -2,7 +2,7 @@
 
 learn a little every day.  🐝
 
-2023-1-9 [java](https://github.com/77octocat/one-a-day/tree/main/java)   
+2023-1-10 [java](https://github.com/77octocat/one-a-day/tree/main/java)  🍯  
 2023-1-9 animation   
 
 2023-1-6 [vue3-mini-project](https://github.com/77octocat/one-a-day/tree/main/vue/vue3-mini-project)   
